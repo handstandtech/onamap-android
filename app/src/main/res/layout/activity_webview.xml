@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/text_top"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<TextView-->
+                <!--style="@style/Title"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="@dimen/activity_horizontal_margin"-->
+                <!--android:text="1 of 50" />-->
+        <!--</RelativeLayout>-->
+
+        <RelativeLayout
+            android:id="@+id/webview_container"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="1"
+            android:clickable="false">
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/loading_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:indeterminateTint="@color/selected"
+                    android:indeterminateTintMode="src_atop" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="2"
+            android:background="@drawable/border_top"></ListView>
+    </LinearLayout>
+
+</LinearLayout>
