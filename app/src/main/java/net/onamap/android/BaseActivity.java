@@ -1,15 +1,17 @@
 package net.onamap.android;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import androidx.appcompat.app.AppCompatActivity;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
 }

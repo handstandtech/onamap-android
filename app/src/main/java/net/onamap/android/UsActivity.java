@@ -18,8 +18,8 @@ import net.onamap.android.model.States;
 public class UsActivity extends BaseActivity {
 
     private MapDao mapDao;
-    private ArrayAdapter<StateData> adapter;
 
+    private ArrayAdapter<StateData> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class UsActivity extends BaseActivity {
 
                 StateData stateData = getItem(position);
                 if (stateData != null) {
-                    holder.txtTitle.setText(stateData.fullName + " - " + stateData.selected);
+                    holder.txtTitle.setText(stateData.fullName);
                     holder.imgIcon.setImageResource(stateData.drawableResThumb);
                 }
 

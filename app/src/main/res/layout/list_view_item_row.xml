@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="#FFFFFFFF"
     app:cardUseCompatPadding="true">
 
@@ -12,8 +13,27 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/imgIcon"
+        <LinearLayout
+            android:id="@+id/imageViewWrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:background="@android:color/white">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_margin="8dp"
+                android:adjustViewBounds="true"
+                android:background="@color/state"
+                android:scaleType="centerCrop"
+                tools:src="@color/selected" />
+        </LinearLayout>
+
+
+        <!--android.support.v7.widget.AppCompatImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
@@ -22,8 +42,9 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
             android:background="@color/state"
-            android:gravity="center_vertical"
-            android:src="@drawable/va" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/dc" /-->
+
 
         <TextView
             android:id="@+id/txtTitle"
@@ -37,5 +58,5 @@
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>
 

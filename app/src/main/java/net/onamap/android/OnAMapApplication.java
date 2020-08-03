@@ -10,6 +10,9 @@ import net.onamap.android.modules.DaggerNetComponent;
 import net.onamap.android.modules.NetComponent;
 import net.onamap.android.modules.NetModule;
 
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
 import okhttp3.OkHttpClient;
 import timber.log.Timber;
 
@@ -22,11 +25,13 @@ public class OnAMapApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-//                .setDefaultFontPath("fonts/Roboto-ThinItalic.ttf")
-//                .setFontAttrId(R.attr.fontPath)
-//                .build()
-//        );
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+                                .setDefaultFontPath("fonts/Roboto-ThinItalic.ttf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
 
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
