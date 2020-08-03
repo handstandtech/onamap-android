@@ -18,7 +18,7 @@ object JsonParser {
     private fun parseFileForJson(context: Context, username: String): JSONObject {
         val assetFilename = "data/$username.json"
         Timber.d(assetFilename)
-        val json = AssetUtils.doit(context!!, assetFilename)
+        val json = AssetUtils.doit(context, assetFilename)
         return JSONObject(json)
     }
 
@@ -33,29 +33,20 @@ object JsonParser {
             country.regions?.forEach { region ->
                 region.cities?.forEach { city ->
                     city.photos.forEach { cityPhotoId ->
-                        val photo = photoMap[cityPhotoId]
-                        if (photo != null) {
-                            photo.city = city.name
-                        } else {
-                            Timber.w("Null Photo: $cityPhotoId")
+                        photoMap[cityPhotoId]?.apply {
+                            this.city = city.name
                         }
                     }
                 }
                 region.photos.forEach { regionPhotoId ->
-                    val photo = photoMap[regionPhotoId]
-                    if (photo != null) {
-                        photo.region = region.name
-                    } else {
-                        Timber.w("Null Photo: $regionPhotoId")
+                    photoMap[regionPhotoId]?.apply {
+                        this.region = region.name
                     }
                 }
             }
             country.photos.forEach { countryPhotoId ->
-                val photo = photoMap[countryPhotoId]
-                if (photo != null) {
-                    photo.country = country.name
-                } else {
-                    Timber.w("Null Photo: $countryPhotoId")
+                photoMap[countryPhotoId]?.apply {
+                    this.country = country.name
                 }
             }
         }
