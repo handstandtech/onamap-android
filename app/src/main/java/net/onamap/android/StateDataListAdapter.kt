@@ -30,7 +30,7 @@ class StateDataListAdapter(private val activity: Activity, var layoutResourceId:
             Log.v(TAG, "Previously Inflated")
             holder = row.tag as ViewHolder
         }
-        holder!!.txtTitle!!.text = stateData.fullName + " - " + stateData.selected
+        holder.txtTitle!!.text = stateData.fullName + " - " + stateData.selected
         holder.imgIcon!!.setImageResource(stateData.icon)
         return row!!
     }

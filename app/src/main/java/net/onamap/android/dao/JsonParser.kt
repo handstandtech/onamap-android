@@ -1,6 +1,7 @@
 package net.onamap.android.dao
 
 import android.content.Context
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import net.onamap.android.util.AssetUtils
@@ -10,9 +11,62 @@ import timber.log.Timber
 import java.util.*
 
 object JsonParser {
-    var gson = GsonBuilder().create()
-    var photosForUsernameCache: MutableMap<String, List<Photo>> =
-        HashMap()
+    private var gson: Gson = GsonBuilder().create()
+
+    var photosForUsernameCache: MutableMap<String, List<Photo>> = mutableMapOf()
+
+    private fun parseFileForJson(context: Context, username: String): JSONObject {
+        val assetFilename = "data/$username.json"
+        Timber.d(assetFilename)
+        val json = AssetUtils.doit(context!!, assetFilename)
+        return JSONObject(json)
+    }
+
+    private data class CountryRegionCity(val country: String?, val region: String?, val city: String?)
+
+    private fun getCountryRegionCity(photoMap: Map<String?, Photo>, countriesList: List<Country>): CountryRegionCity {
+        var country: String? = null
+        var region: String? = null
+        var city: String? = null
+
+        countriesList.forEach { country ->
+            country.regions?.forEach { region ->
+                region.cities?.forEach { city ->
+                    city.photos.forEach { cityPhotoId ->
+                        val photo = photoMap[cityPhotoId]
+                        if (photo != null) {
+                            photo.city = city.name
+                        } else {
+                            Timber.w("Null Photo: $cityPhotoId")
+                        }
+                    }
+                }
+                region.photos.forEach { regionPhotoId ->
+                    val photo = photoMap[regionPhotoId]
+                    if (photo != null) {
+                        photo.region = region.name
+                    } else {
+                        Timber.w("Null Photo: $regionPhotoId")
+                    }
+                }
+            }
+            country.photos.forEach { countryPhotoId ->
+                val photo = photoMap[countryPhotoId]
+                if (photo != null) {
+                    photo.country = country.name
+                } else {
+                    Timber.w("Null Photo: $countryPhotoId")
+                }
+            }
+        }
+
+
+        return CountryRegionCity(
+            country = country,
+            region = region,
+            city = city
+        )
+    }
 
     fun parse(
         context: Context?,
@@ -21,61 +75,22 @@ object JsonParser {
         if (photosForUsernameCache[username] != null) {
             return photosForUsernameCache[username]
         }
-        var photos: List<Photo> =
-            ArrayList()
-        try {
-            val assetFilename = "data/$username.json"
-            Timber.d(assetFilename)
-            val json = AssetUtils.doit(context!!, assetFilename)
-            val jsonObject = JSONObject(json)
-            photos = parsePhotoMap(jsonObject.getJSONObject("photosMap"))
-            val photoMap: MutableMap<String?, Photo> =
-                HashMap()
-            for (photo in photos) {
-                photoMap[photo.id] = photo
-            }
-            val countries = parseCountries(
-                jsonObject.getJSONObject("world").getJSONObject("places")
-            )
-            for (country in countries) {
-                for (region in country.regions!!) {
-                    for (city in region.cities!!) {
-                        for (cityPhotoId in city.photos) {
-                            val photo = photoMap[cityPhotoId]
-                            if (photo != null) {
-                                photo.city = city.name
-                            } else {
-                                Timber.w("Null Photo: $cityPhotoId")
-                            }
-                        }
-                    }
-                    for (regionPhotoId in region.photos) {
-                        val photo = photoMap[regionPhotoId]
-                        if (photo != null) {
-                            photo.region = region.name
-                        } else {
-                            Timber.w("Null Photo: $regionPhotoId")
-                        }
-                    }
-                }
-                for (countryPhotoId in country.photos) {
-                    val photo = photoMap[countryPhotoId]
-                    if (photo != null) {
-                        photo.country = country.name
-                    } else {
-                        Timber.w("Null Photo: $countryPhotoId")
-                    }
-                }
-            }
-            photos = ArrayList(photoMap.values)
-        } catch (e: JSONException) {
-            Timber.e(e)
-        }
-        photosForUsernameCache[username] = photos
+        val jsonObject = parseFileForJson(context!!, username)
+        var photos: List<Photo> = parsePhotoMap(jsonObject.getJSONObject("photosMap"))
+        val photoMap = photos.map { photo -> photo.id to photo }.toMap()
+
+        val countriesList = parseCountries(
+            jsonObject
+                .getJSONObject("world")
+                .getJSONObject("places")
+        )
+
+        val countryRegionCity = getCountryRegionCity(photoMap, countriesList)
+
+        photosForUsernameCache[username] = ArrayList(photoMap.values)
         return photos
     }
 
-    @Throws(JSONException::class)
     private fun parseCountries(jsonObject: JSONObject): List<Country> {
         val countries: MutableList<Country> = ArrayList()
         val keys = jsonObject.keys()
@@ -92,7 +107,6 @@ object JsonParser {
         return countries
     }
 
-    @Throws(JSONException::class)
     private fun parsePhotos(jsonObject: JSONObject): List<String> {
         return if (!jsonObject.isNull("photos")) {
             gson.fromJson(
@@ -103,7 +117,6 @@ object JsonParser {
         } else ArrayList()
     }
 
-    @Throws(JSONException::class)
     private fun parseRegions(p: JSONObject): List<Region> {
         val regions: MutableList<Region> =
             ArrayList()
@@ -124,7 +137,6 @@ object JsonParser {
         return regions
     }
 
-    @Throws(JSONException::class)
     private fun parseCities(p: JSONObject): List<City> {
         val cities: MutableList<City> = ArrayList()
         if (!p.isNull("places")) {
@@ -143,17 +155,13 @@ object JsonParser {
         return cities
     }
 
-    @Throws(JSONException::class)
     private fun parsePhotoMap(photoMap: JSONObject): List<Photo> {
-        val photos: MutableList<Photo> =
-            ArrayList()
-        val keys = photoMap.keys()
-        while (keys.hasNext()) {
-            val id = keys.next()
-            val photo =
-                gson.fromJson(
-                    photoMap.getJSONObject(id).toString(), Photo::class.java
-                )
+        val photos: MutableList<Photo> = mutableListOf()
+        photoMap.keys().forEach { id ->
+            val photo = gson.fromJson(
+                photoMap.getJSONObject(id).toString(),
+                Photo::class.java
+            )
             photo.id = id
             photos.add(photo)
         }
