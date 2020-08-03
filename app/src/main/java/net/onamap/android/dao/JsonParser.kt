@@ -26,7 +26,7 @@ object JsonParser {
         try {
             val assetFilename = "data/$username.json"
             Timber.d(assetFilename)
-            val json = AssetUtils.doit(context, assetFilename)
+            val json = AssetUtils.doit(context!!, assetFilename)
             val jsonObject = JSONObject(json)
             photos = parsePhotoMap(jsonObject.getJSONObject("photosMap"))
             val photoMap: MutableMap<String?, Photo> =
@@ -38,8 +38,8 @@ object JsonParser {
                 jsonObject.getJSONObject("world").getJSONObject("places")
             )
             for (country in countries) {
-                for (region in country.regions) {
-                    for (city in region.cities) {
+                for (region in country.regions!!) {
+                    for (city in region.cities!!) {
                         for (cityPhotoId in city.photos) {
                             val photo = photoMap[cityPhotoId]
                             if (photo != null) {

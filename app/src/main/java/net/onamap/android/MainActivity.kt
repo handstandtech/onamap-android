@@ -1,17 +1,15 @@
-package net.onamap.android;
+package net.onamap.android
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 
-public class MainActivity extends BaseActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+class MainActivity : BaseActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
 //        ViewGroup vg = (ViewGroup) findViewById(android.R.id.content);
 //        Map<String, String> map = StatesData.getMap();
@@ -71,44 +69,38 @@ public class MainActivity extends BaseActivity {
 //        vg.addView(imageView1);
     }
 
-    public static Bitmap mergeImage(Bitmap base, Bitmap overlay) {
-        int adWDelta = (int) (base.getWidth() - overlay.getWidth()) / 2;
-        int adHDelta = (int) (base.getHeight() - overlay.getHeight()) / 2;
-
-        Bitmap mBitmap = Bitmap.createBitmap(base.getWidth(), base.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(mBitmap);
-        canvas.drawBitmap(base, 0, 0, null);
-        canvas.drawBitmap(overlay, adWDelta, adHDelta, null);
-
-        return mBitmap;
-    }
-
-    public void onResume() {
-        super.onResume();
-//        ImageView iv = (ImageView) findViewById(R.id.logo);
+    public override fun onResume() {
+        super.onResume()
+        //        ImageView iv = (ImageView) findViewById(R.id.logo);
 //        VectorDrawable drawable = (VectorDrawable) iv.getDrawable();
 //        drawable.
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        val id = item.itemId
+        return if (id == R.id.action_settings) {
+            true
+        } else super.onOptionsItemSelected(item)
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    companion object {
+        fun mergeImage(base: Bitmap, overlay: Bitmap): Bitmap {
+            val adWDelta = (base.width - overlay.width) / 2
+            val adHDelta = (base.height - overlay.height) / 2
+            val mBitmap = Bitmap.createBitmap(base.width, base.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(mBitmap)
+            canvas.drawBitmap(base, 0f, 0f, null)
+            canvas.drawBitmap(overlay, adWDelta.toFloat(), adHDelta.toFloat(), null)
+            return mBitmap
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
