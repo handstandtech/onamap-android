@@ -1,7 +1,6 @@
 package net.onamap.android
 
 import android.app.Activity
-import android.content.Context
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -23,8 +22,8 @@ class StateDataListAdapter(private val activity: Activity, var layoutResourceId:
             val inflater = activity.layoutInflater
             row = inflater.inflate(layoutResourceId, parent, false)
             holder = ViewHolder()
-            holder.imgIcon = row.findViewById<View>(R.id.imgIcon) as ImageView
-            holder.txtTitle = row.findViewById<View>(R.id.txtTitle) as TextView
+            holder.imgIcon = row.findViewById<View>(R.id.state_icon) as ImageView
+            holder.txtTitle = row.findViewById<View>(R.id.state_name) as TextView
             row.tag = holder
         } else {
             Log.v(TAG, "Previously Inflated")

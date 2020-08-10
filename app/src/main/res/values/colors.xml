@@ -3,5 +3,5 @@
     <color name="selected">#FFFFAA</color>
     <color name="unselected">#E0E0E0</color>
     <color name="transparent">#00000000</color>
-    <color name="state">#ffcc0000</color>
+    <color name="state_background">#3EDC84</color>
 </resources>

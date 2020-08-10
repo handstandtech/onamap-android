@@ -38,7 +38,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
                             android:adjustViewBounds="true"
-                            android:background="@color/state"
+                            android:background="@color/state_background"
                             android:scaleType="fitCenter"
                             tools:src="@drawable/ca" />
                     </LinearLayout>

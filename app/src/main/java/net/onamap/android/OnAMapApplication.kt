@@ -19,7 +19,7 @@ class OnAMapApplication : Application() {
                 .addInterceptor(
                     CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
-                            .setDefaultFontPath("fonts/Roboto-ThinItalic.ttf")
+                            .setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
                             .setFontAttrId(R.attr.fontPath)
                             .build()
                     )
