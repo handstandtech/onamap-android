@@ -2,21 +2,24 @@ package net.onamap.android.compose
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.FrameLayout
-import androidx.compose.Composable
-import androidx.compose.Recomposer
-import androidx.ui.core.Modifier
-import androidx.ui.core.setContent
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.Text
-import androidx.ui.layout.Column
-import androidx.ui.layout.Row
-import androidx.ui.layout.padding
-import androidx.ui.material.Button
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Recomposer
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
+import dev.chrisbanes.accompanist.coil.CoilImage
+import dev.chrisbanes.accompanist.coil.CoilImageWithCrossfade
+import net.onamap.android.R
 
 class ComposeFrameLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
@@ -24,15 +27,13 @@ class ComposeFrameLayout @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
-        setContent(Recomposer.current()) {
-            MyApplicationTheme {
-                Button(onClick = {}) {
-                    Text(
-                        text = "My Button",
-                        modifier = Modifier.padding(4.dp)
-                    )
-                }
-            }
+        setContent(recomposer = Recomposer.current()) {
+            CoilImage(
+                data = R.drawable.ak
+            )
+//            MyApplicationTheme {
+//                UsState()
+//            }
         }
     }
 }
@@ -51,9 +52,25 @@ fun UsState() {
                 Greeting("Row 2")
                 MyButton()
             }
+            Row {
+
+                Greeting("Image")
+                CoilImage(
+                    data = "https://compose.academy/doks-theme/assets/images/layout/logo.png"
+                )
+                CoilImageWithCrossfade(
+                    data = "https://loremflickr.com/300/300",
+                    onRequestCompleted = {
+                        Log.d(TAG, "Request Completed")
+                    }
+                )
+            }
         }
+
     }
 }
+
+private val TAG = "TAG"
 
 @Composable
 fun Greeting(name: String) {
@@ -70,7 +87,7 @@ fun MyButton() {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
