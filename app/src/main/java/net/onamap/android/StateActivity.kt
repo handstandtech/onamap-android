@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
-import com.squareup.picasso.Picasso
+import coil.api.load
 import net.onamap.android.dao.Photo
 import net.onamap.android.dao.PhotoDao
 import net.onamap.android.model.StateData
@@ -28,7 +28,7 @@ class StateActivity : BaseActivity() {
         val firstStatePhoto = statePhotos?.get(0)
         if (statePhotos != null) {
             val photoView = findViewById<View>(R.id.photoView) as AppCompatImageView
-            Picasso.with(applicationContext).load(firstStatePhoto?.url_m).into(photoView)
+            photoView.load(firstStatePhoto?.url_m)
         } else {
             Toast.makeText(this, "No Photos in This State", Toast.LENGTH_SHORT).show()
             this.finish()
