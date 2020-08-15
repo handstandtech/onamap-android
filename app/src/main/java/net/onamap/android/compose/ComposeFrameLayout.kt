@@ -8,15 +8,18 @@ import androidx.compose.foundation.Box
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.VerticalScroller
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -32,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.chrisbanes.accompanist.coil.CoilImageWithCrossfade
 import net.onamap.android.R
 
 class ComposeFrameLayout @JvmOverloads constructor(
@@ -64,36 +66,61 @@ fun UsState() {
             modifier = Modifier.fillMaxSize(),
             horizontalGravity = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Alaska",
-                style = TextStyle(fontSize = 40.sp),
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Box(
-                backgroundColor = Color.Green,
-                gravity = Alignment.Center,
-                modifier = Modifier.wrapContentWidth(),
-                shape = RoundedCornerShape(10),
-                border = Border(
-                    size = 1.dp,
-                    color = Color.DarkGray
+            CardView {
+                Text(
+                    text = "Alaska",
+                    style = MaterialTheme.typography.h4,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
                 )
-            ) {
+            }
+            CardView {
                 Image(
                     asset = imageResource(id = R.drawable.ak),
                     modifier = Modifier.size(200.dp, 200.dp)
                 )
             }
-            CoilImage(
-                data = "https://live.staticflickr.com/3826/11697289533_cfd6282b37.jpg",
-                modifier = Modifier.size(500.dp, 300.dp)
-            )
+            CardView {
+                CoilImage(
+                    data = "https://live.staticflickr.com/3826/11697289533_cfd6282b37.jpg",
+                    modifier = Modifier.size(500.dp, 300.dp)
+                )
+            }
         }
     }
 }
 
 private val TAG = "TAG"
+
+@Composable
+fun CardView(content: @Composable () -> Unit) {
+    Box(
+        padding = 8.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        gravity = Alignment.Center
+    ) {
+        Card(
+            shape = RoundedCornerShape(8.dp),
+            border = Border(
+                size = 1.dp,
+                color = Color.DarkGray
+            )
+        ) {
+            Box(
+                padding = 8.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                gravity = Alignment.Center,
+                backgroundColor = Color.Green
+            ) {
+                content()
+            }
+        }
+    }
+}
 
 @Composable
 fun Greeting(name: String) {
