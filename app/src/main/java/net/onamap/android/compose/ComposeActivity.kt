@@ -30,17 +30,21 @@ import net.onamap.android.R
 import net.onamap.android.dao.Photo
 import net.onamap.android.dao.PhotoDao
 import net.onamap.android.model.StateData
+import net.onamap.android.model.States
 
 
 class ComposeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val stateData = intent.getSerializableExtra("state") as StateData
-        val statePhotos: List<Photo>? = PhotoDao(applicationContext).getPhotosForState(stateData.fullName)
+        val stateData = intent.getSerializableExtra("state") as StateData?
+        val stateFullName = stateData?.fullName ?: "Alaska"
+        val state = States.states.find { it.fullName == stateFullName }
+
+        val statePhotos: List<Photo>? = PhotoDao(applicationContext).getPhotosForState(stateFullName)
         setContent {
             MyApplicationTheme {
                 Composables()
-                    .UsState(stateData, statePhotos!!)
+                    .UsState(state!!, statePhotos!!)
             }
         }
     }
