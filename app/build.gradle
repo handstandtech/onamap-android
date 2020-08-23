@@ -28,15 +28,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         compose true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion "${compose_version}"
-        kotlinCompilerVersion "1.4.0-dev-withExperimentalGoogleExtensions-20200720"
+        kotlinCompilerVersion "${kotlin_version}"
     }
 }
 
@@ -71,7 +74,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.ui:ui-tooling:$compose_version"
 
-    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.1.8"
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.1.9"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {

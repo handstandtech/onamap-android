@@ -1,7 +1,7 @@
 package net.onamap.android.compose
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Border
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Image
@@ -154,8 +154,7 @@ fun StateImage(@DrawableRes icon: Int, modifier: Modifier) {
     Box(
         backgroundColor = Color.White,
         modifier = modifier.wrapContentSize(),
-        padding = 4.dp,
-        border = Border(1.dp, Color.Red)
+        padding = 4.dp
     ) {
         Box(
             backgroundColor = stateBackground,
@@ -181,35 +180,23 @@ fun CardView(content: @Composable () -> Unit) {
         padding = 8.dp,
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight(),
-        border = Border(1.dp, Color.Blue)
+            .wrapContentHeight()
     ) {
         Card(
             shape = RoundedCornerShape(8.dp),
-            border = Border(
-                size = 1.dp,
-                color = Color.DarkGray
-            )
+            border = BorderStroke(1.dp, Color.DarkGray)
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight(),
-                border = Border(
-                    size = 1.dp,
-                    color = Color.Green
-                )
+                    .wrapContentHeight()
             ) {
                 Box(
                     padding = 8.dp,
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    gravity = Alignment.CenterStart,
-                    border = Border(
-                        size = 1.dp,
-                        color = Color.Yellow
-                    )
+                    gravity = Alignment.CenterStart
                 ) {
                     content()
                 }
