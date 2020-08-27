@@ -43,8 +43,7 @@ class ComposeActivity : AppCompatActivity() {
         val statePhotos: List<Photo>? = PhotoDao(applicationContext).getPhotosForState(stateFullName)
         setContent {
             MyApplicationTheme {
-                Composables()
-                    .UsState(state!!, statePhotos!!)
+                UsState(state!!, statePhotos!!)
             }
         }
     }
