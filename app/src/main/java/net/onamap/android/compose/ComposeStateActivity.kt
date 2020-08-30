@@ -16,7 +16,8 @@ class ComposeStateActivity : AppCompatActivity() {
         val stateFullName = stateData?.fullName ?: "Alaska"
         val state = States.states.find { it.fullName == stateFullName }
 
-        val statePhotos: List<Photo>? = PhotoDao(applicationContext).getPhotosForState(stateFullName)
+        PhotoDao.init(applicationContext)
+        val statePhotos: List<Photo>? = PhotoDao.getPhotosForState(stateFullName)
         setContent {
             MyApplicationTheme {
                 UsState(state = state!!, photos = statePhotos!!)

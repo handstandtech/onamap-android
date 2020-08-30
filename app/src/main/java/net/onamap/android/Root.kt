@@ -4,18 +4,17 @@ package net.onamap.android
 import androidx.compose.runtime.Composable
 import com.github.zsoltk.compose.router.Router
 import net.onamap.android.compose.UsState
+import net.onamap.android.dao.PhotoDao
 import net.onamap.android.model.StateData
 import net.onamap.android.model.States
 
 interface Root {
-
 
     sealed class Routing {
         object UsMap : Routing()
 
         data class State(val state: StateData) : Routing()
     }
-
 
     companion object {
         @Composable
@@ -43,10 +42,10 @@ interface Root {
                     }
                     is Routing.State -> {
                         val state = currentRouting.state
+                        val photos = PhotoDao.getPhotosForState(state.fullName)
                         UsState(
                             state = state,
-                            photos = listOf(),
-
+                            photos = photos,
                             onUpClicked = {
                                 backStack.pop()
                             }

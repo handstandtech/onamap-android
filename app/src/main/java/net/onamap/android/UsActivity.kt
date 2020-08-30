@@ -21,6 +21,7 @@ import net.onamap.android.compose.CardView
 import net.onamap.android.compose.MyApplicationTheme
 import net.onamap.android.compose.StateImage
 import net.onamap.android.compose.appTypography
+import net.onamap.android.dao.PhotoDao
 import net.onamap.android.model.StateData
 import net.onamap.android.model.States
 
@@ -51,6 +52,7 @@ class UsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
 
+        PhotoDao.init(applicationContext = this.applicationContext)
 
         setContent {
 

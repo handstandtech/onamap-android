@@ -24,7 +24,9 @@ class StateActivity : BaseActivity() {
         imageView.setImageResource(stateData.icon)
         textView.text = stateData.fullName
 
-        val statePhotos: List<Photo>? = PhotoDao(applicationContext).getPhotosForState(stateData.fullName)
+        PhotoDao.init(applicationContext)
+
+        val statePhotos: List<Photo>? = PhotoDao.getPhotosForState(stateData.fullName)
         val firstStatePhoto = statePhotos?.get(0)
         if (statePhotos != null) {
             val photoView = findViewById<View>(R.id.photoView) as AppCompatImageView
