@@ -64,11 +64,6 @@ class UsActivity : BaseActivity() {
                     // Your root composable goes here
                     Root.Content(Root.Routing.UsMap)
                 }
-//                StatesList(
-//                    activity = this,
-//                    states = States.states
-//                )
-
             }
         }
 

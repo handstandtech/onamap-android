@@ -30,15 +30,6 @@ interface Root {
                             },
                             states = States.states
                         )
-//                        LoggedOut.Content(
-//                            defaultRouting = Splash,
-//                            onLoggedIn = { user ->
-//                                // play around with other back stack operations here:
-//                                backStack.newRoot(
-//                                    Routing.LoggedIn(user)
-//                                )
-//                            }
-//                        )
                     }
                     is Routing.State -> {
                         val state = currentRouting.state
@@ -50,16 +41,6 @@ interface Root {
                                 backStack.pop()
                             }
                         )
-//                        LoggedIn.Content(
-//                            defaultRouting = Gallery,
-//                            user = currentRouting.user,
-//                            onLogout = {
-//                                // play around with other back stack operations here:
-//                                backStack.newRoot(
-//                                    Routing.LoggedOut
-//                                )
-//                            }
-//                        )
                     }
                 }
             }
