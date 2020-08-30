@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.IconButton
@@ -43,16 +42,22 @@ import net.onamap.android.dao.Photo
 import net.onamap.android.model.StateData
 
 @Composable
-fun UsState(stateData: StateData, statePhotos: List<Photo>) {
+fun UsState(
+    onUpClicked: () -> Unit = {},
+    state: StateData,
+    photos: List<Photo>
+) {
     // A surface container using the 'background' color from the theme
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
-                Text(text = stateData.fullName)
+                Text(text = state.fullName)
             },
             backgroundColor = Color.White,
             navigationIcon = {
-                IconButton(onClick = { }) {
+                IconButton(onClick = {
+                    onUpClicked()
+                }) {
                     Icon(Icons.Filled.ArrowBack)
                 }
             }
@@ -62,10 +67,10 @@ fun UsState(stateData: StateData, statePhotos: List<Photo>) {
             horizontalGravity = Alignment.CenterHorizontally
         ) {
             StateHeaderCard(
-                icon = stateData.icon,
-                photoCount = statePhotos.size
+                icon = state.icon,
+                photoCount = photos.size
             )
-            for (photo in statePhotos) {
+            for (photo in photos) {
                 CardView {
                     val coilImageId = "coilImage"
                     ConstraintLayout(
