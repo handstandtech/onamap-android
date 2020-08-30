@@ -6,8 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import net.onamap.android.R
-import net.onamap.android.StateActivity
-import net.onamap.android.compose.ComposeActivity
+import net.onamap.android.compose.ComposeStateActivity
 import net.onamap.android.model.StateData
 
 
@@ -24,7 +23,7 @@ internal class StatesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
             val context = itemView.context
 
 //            val intent = Intent(context, StateActivity::class.java)
-            val intent = Intent(context, ComposeActivity::class.java)
+            val intent = Intent(context, ComposeStateActivity::class.java)
             intent.putExtra("state", stateData)
             context.startActivity(intent)
         }

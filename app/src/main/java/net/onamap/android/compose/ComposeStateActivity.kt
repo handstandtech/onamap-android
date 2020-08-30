@@ -33,7 +33,7 @@ import net.onamap.android.model.StateData
 import net.onamap.android.model.States
 
 
-class ComposeActivity : AppCompatActivity() {
+class ComposeStateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val stateData = intent.getSerializableExtra("state") as StateData?

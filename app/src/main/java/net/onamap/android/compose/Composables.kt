@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import dev.chrisbanes.accompanist.coil.CoilImageWithCrossfade
@@ -131,9 +132,8 @@ fun StateHeaderCard(@DrawableRes icon: Int, photoCount: Int) {
                 StateImage(
                     icon = icon,
                     modifier = Modifier
-                        .layoutId(stateImageConstraint)
-                        .wrapContentHeight()
-                        .wrapContentWidth()
+                        .layoutId(stateImageConstraint),
+                    sizeDp = 100.dp
                 )
                 Column(
                     horizontalGravity = Alignment.CenterHorizontally,
@@ -162,7 +162,7 @@ fun StateHeaderCard(@DrawableRes icon: Int, photoCount: Int) {
 }
 
 @Composable
-fun StateImage(@DrawableRes icon: Int, modifier: Modifier) {
+fun StateImage(@DrawableRes icon: Int, modifier: Modifier = Modifier, sizeDp: Dp) {
     Box(
         backgroundColor = Color.White,
         modifier = modifier.wrapContentSize(),
@@ -178,7 +178,7 @@ fun StateImage(@DrawableRes icon: Int, modifier: Modifier) {
                 Image(
                     asset = imageResource(id = icon),
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(sizeDp)
                 )
             }
         }
@@ -186,10 +186,13 @@ fun StateImage(@DrawableRes icon: Int, modifier: Modifier) {
 }
 
 @Composable
-fun CardView(content: @Composable () -> Unit) {
+fun CardView(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
     Box(
         padding = 8.dp,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
@@ -217,14 +220,6 @@ fun CardView(content: @Composable () -> Unit) {
 }
 
 // Previews
-
-@Preview
-@Composable
-private fun CardPreview2() {
-    CardView {
-        Text("hi2")
-    }
-}
 
 private val mockPhotos = listOf(
     Photo(
