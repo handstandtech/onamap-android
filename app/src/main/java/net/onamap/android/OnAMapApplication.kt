@@ -1,9 +1,10 @@
 package net.onamap.android
 
 import android.app.Application
-import io.github.inflationx.calligraphy3.CalligraphyConfig
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor
-import io.github.inflationx.viewpump.ViewPump
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import net.onamap.android.dao.PhotoDao
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -11,20 +12,12 @@ class OnAMapApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        ViewPump.init(
-            ViewPump.builder()
-                .addInterceptor(
-                    CalligraphyInterceptor(
-                        CalligraphyConfig.Builder()
-                            .setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
-                            .setFontAttrId(R.attr.fontPath)
-                            .build()
-                    )
-                )
-                .build()
-        )
         if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())
+        }
+
+        CoroutineScope(Dispatchers.Default).launch {
+            PhotoDao.init(applicationContext = applicationContext)
         }
     }
 }

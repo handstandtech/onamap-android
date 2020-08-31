@@ -18,16 +18,9 @@ class PhotoDao {
         }
 
         private fun getPhotosForState(allPhotos: List<Photo>, stateName: String?): List<Photo> {
-            val photosInState: MutableList<Photo> =
-                ArrayList()
-            allPhotos.forEach { photo ->
-                if (photo.country.equals("United States", ignoreCase = true)) {
-                    if (photo.region != null && photo.region.equals(stateName, ignoreCase = true)) {
-                        photosInState.add(photo)
-                    }
-                }
+            return allPhotos.filter {
+                it.country == "United States" && it.region == stateName
             }
-            return photosInState
         }
     }
 }

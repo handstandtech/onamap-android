@@ -13,11 +13,11 @@ object AssetUtils {
             val buf = StringBuilder()
             var json: InputStream? = null
             json = context.assets.open(filename!!)
-            val `in` = BufferedReader(InputStreamReader(json, "UTF-8"))
-            while (`in`.readLine().also { str = it } != null) {
+            val inputStream = BufferedReader(InputStreamReader(json, "UTF-8"))
+            while (inputStream.readLine().also { str = it } != null) {
                 buf.append(str)
             }
-            `in`.close()
+            inputStream.close()
             str = buf.toString()
         } catch (e: IOException) {
             e.printStackTrace()

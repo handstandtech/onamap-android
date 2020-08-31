@@ -1,6 +1,7 @@
 package net.onamap.android
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
@@ -25,20 +26,7 @@ import net.onamap.android.dao.PhotoDao
 import net.onamap.android.model.StateData
 import net.onamap.android.model.States
 
-class UsActivity : BaseActivity() {
-
-//    private var recyclerViewAdapter: StatesRVAdapter? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_usmap)
-//        val recyclerView = findViewById<View>(R.id.states_recyclerview) as RecyclerView
-//        recyclerView.layoutManager =
-//            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-//        recyclerViewAdapter = StatesRVAdapter()
-//        recyclerView.adapter = recyclerViewAdapter
-//    }
-
+class UsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (!backPressHandler.handle()) {
@@ -50,9 +38,6 @@ class UsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        PhotoDao.init(applicationContext = this.applicationContext)
 
         setContent {
 
