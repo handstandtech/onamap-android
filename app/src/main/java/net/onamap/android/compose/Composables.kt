@@ -1,12 +1,12 @@
 package net.onamap.android.compose
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ConstraintLayout
@@ -28,7 +28,9 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawShadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.imageResource
@@ -193,34 +195,20 @@ fun StateImage(@DrawableRes icon: Int, modifier: Modifier = Modifier, sizeDp: Dp
 @Composable
 fun CardView(
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = { },
     content: @Composable () -> Unit
 ) {
-    Box(
-        padding = 8.dp,
+    val shape = RoundedCornerShape(4.dp)
+    Card(
+        shape = shape,
         modifier = modifier
+            .padding(top = 8.dp, start = 8.dp, end = 8.dp)
             .fillMaxWidth()
             .wrapContentHeight()
+            .drawShadow(elevation = 2.dp, shape = shape, clip = true)
+            .clickable(onClick = onClick)
     ) {
-        Card(
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(1.dp, Color.DarkGray)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-            ) {
-                Box(
-                    padding = 8.dp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    gravity = Alignment.CenterStart
-                ) {
-                    content()
-                }
-            }
-        }
+        content()
     }
 }
 

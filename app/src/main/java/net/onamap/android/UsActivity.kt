@@ -2,12 +2,15 @@ package net.onamap.android
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Box
 import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
 import androidx.compose.ui.Alignment
@@ -67,29 +70,32 @@ fun StatesList(
         horizontalGravity = Alignment.CenterHorizontally
     ) {
         for (state in states) {
-            CardView(modifier = Modifier.clickable(onClick = {
-//                val intent = Intent(activity!!, ComposeStateActivity::class.java)
-//                intent.putExtra("state", state)
-//                activity.startActivity(intent)
+            CardView(onClick = {
                 onStateClicked(state)
-            })) {
-//                ClickableText(text = , onClick = )
-
-                Row(
-                    verticalGravity = Alignment.CenterVertically,
+            }) {
+                Box(
+                    padding = 8.dp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
+                    gravity = Alignment.CenterStart
                 ) {
-                    StateImage(
-                        icon = state.drawableResThumb,
-                        sizeDp = 30.dp
-                    )
-                    Text(
-                        text = state.fullName,
-                        style = appTypography.subtitle1,
-                        textAlign = TextAlign.Left,
-                        modifier = Modifier.padding(
-                            start = 8.dp
+                    Row(
+                        verticalGravity = Alignment.CenterVertically,
+                    ) {
+                        StateImage(
+                            icon = state.drawableResThumb,
+                            sizeDp = 30.dp
                         )
-                    )
+                        Text(
+                            text = state.fullName,
+                            style = appTypography.subtitle1,
+                            textAlign = TextAlign.Left,
+                            modifier = Modifier.padding(
+                                start = 8.dp
+                            )
+                        )
+                    }
                 }
             }
         }
