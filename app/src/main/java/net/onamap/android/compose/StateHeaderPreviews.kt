@@ -3,6 +3,7 @@ package net.onamap.android.compose
 import androidx.compose.runtime.Composable
 import androidx.ui.tooling.preview.Preview
 import net.onamap.android.R
+import net.onamap.android.compose.StateHeaderCard.StateHeaderCard
 
 @Preview
 @Composable

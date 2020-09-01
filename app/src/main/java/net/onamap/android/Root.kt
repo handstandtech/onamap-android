@@ -3,7 +3,9 @@ package net.onamap.android
 
 import androidx.compose.runtime.Composable
 import com.github.zsoltk.compose.router.Router
-import net.onamap.android.compose.UsState
+import net.onamap.android.compose.StateListScreen
+import net.onamap.android.compose.UsStateScreen
+import net.onamap.android.compose.UsStateScreen.UsStateScreen
 import net.onamap.android.dao.PhotoDao
 import net.onamap.android.model.StateData
 import net.onamap.android.model.States
@@ -20,7 +22,7 @@ interface Root {
         @Composable
         fun Content(defaultRouting: Routing) {
             Router(defaultRouting) { backStack ->
-                val stateListComposable =  StatesList(
+                val stateListComposable = StateListScreen(
                     onStateClicked = { state ->
                         backStack.push(
                             Routing.State(state)
@@ -35,7 +37,7 @@ interface Root {
                     is Routing.State -> {
                         val state = currentRouting.state
                         val photos = PhotoDao.getPhotosForState(state.fullName)
-                        UsState(
+                        UsStateScreen(
                             state = state,
                             photos = photos,
                             onUpClicked = {

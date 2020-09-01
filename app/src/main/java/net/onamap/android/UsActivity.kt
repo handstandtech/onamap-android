@@ -3,7 +3,6 @@ package net.onamap.android
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Box
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,11 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumnFor
-import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
 import androidx.compose.ui.Alignment
@@ -60,53 +55,3 @@ class UsActivity : AppCompatActivity() {
 }
 
 
-@Composable
-fun StatesList(
-    onStateClicked: (StateData) -> Unit = {},
-    states: List<StateData>
-) {
-    Scaffold(
-        bodyContent = {
-            LazyColumnFor(
-                items = states,
-                modifier = Modifier.fillMaxSize()
-            ) { state ->
-                CardView(onClick = {
-                    onStateClicked(state)
-                }) {
-                    Box(
-                        padding = 8.dp,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight(),
-                        gravity = Alignment.CenterStart
-                    ) {
-                        Row(
-                            verticalGravity = Alignment.CenterVertically,
-                        ) {
-                            StateImage(
-                                icon = state.drawableResThumb,
-                                sizeDp = 30.dp
-                            )
-                            Text(
-                                text = state.fullName,
-                                style = appTypography.subtitle1,
-                                textAlign = TextAlign.Left,
-                                modifier = Modifier.padding(
-                                    start = 8.dp
-                                )
-                            )
-                        }
-                    }
-                }
-            }
-        })
-}
-
-@Preview
-@Composable
-fun StatesListPreview() {
-    StatesList(
-        states = States.states.subList(0, 10)
-    )
-}
