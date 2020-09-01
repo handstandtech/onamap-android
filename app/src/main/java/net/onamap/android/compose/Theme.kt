@@ -61,8 +61,7 @@ private val dark = darkColors(
 )
 
 private val light = lightColors(
-//    primary = purple500,
-//    primaryVariant = purple700,
+//    background = Color.White,
 //    secondary = teal200,
 //    background = Color.LightGray
 

@@ -1,9 +1,9 @@
-package net.onamap.android.compose
+package net.onamap.android.compose.usstate
 
 import androidx.compose.runtime.Composable
 import androidx.ui.tooling.preview.Preview
 import net.onamap.android.R
-import net.onamap.android.compose.StateHeaderCard.StateHeaderCard
+import net.onamap.android.compose.usstate.StateHeaderCard.StateHeaderCard
 
 @Preview
 @Composable

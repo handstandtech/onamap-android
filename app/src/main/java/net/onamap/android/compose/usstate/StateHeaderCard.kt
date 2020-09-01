@@ -1,4 +1,4 @@
-package net.onamap.android.compose
+package net.onamap.android.compose.usstate
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Text
@@ -17,6 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import net.onamap.android.compose.CardView
+import net.onamap.android.compose.StateImage
+import net.onamap.android.compose.appTypography
 
 
 object StateHeaderCard {

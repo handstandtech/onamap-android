@@ -1,4 +1,4 @@
-package net.onamap.android.compose
+package net.onamap.android.compose.usstate
 
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.ConstraintSet
@@ -11,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.accompanist.coil.CoilImageWithCrossfade
+import net.onamap.android.compose.CardView
 import net.onamap.android.dao.Photo
 
 @Composable

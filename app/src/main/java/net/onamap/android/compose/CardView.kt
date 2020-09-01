@@ -12,7 +12,7 @@ import androidx.compose.ui.draw.drawShadow
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import net.onamap.android.R
-import net.onamap.android.compose.StateHeaderCard.StateHeaderCard
+import net.onamap.android.compose.usstate.StateHeaderCard.StateHeaderCard
 import net.onamap.android.dao.Photo
 
 

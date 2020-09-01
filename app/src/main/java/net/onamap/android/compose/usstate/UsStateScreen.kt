@@ -1,4 +1,4 @@
-package net.onamap.android.compose
+package net.onamap.android.compose.usstate
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Icon
@@ -10,7 +10,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import net.onamap.android.compose.StateHeaderCard.StateHeaderCard
+import net.onamap.android.compose.usstate.StateHeaderCard.StateHeaderCard
 import net.onamap.android.dao.Photo
 import net.onamap.android.model.StateData
 
