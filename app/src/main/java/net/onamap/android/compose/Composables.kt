@@ -17,13 +17,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -44,13 +43,23 @@ import net.onamap.android.R
 import net.onamap.android.dao.Photo
 import net.onamap.android.model.StateData
 
+data class StateHeaderInfo(@DrawableRes val icon: Int, val photoCount: Int)
+
 @Composable
 fun UsState(
     onUpClicked: () -> Unit = {},
     state: StateData,
     photos: List<Photo>
 ) {
-    // A surface container using the 'background' color from the theme
+    val itemsList = mutableListOf<Any>(
+        StateHeaderInfo(
+            icon = state.icon,
+            photoCount = photos.size
+        )
+    ).apply {
+        addAll(photos)
+    }.toList()
+
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = {
@@ -65,42 +74,45 @@ fun UsState(
                 }
             }
         )
-        ScrollableColumn(
-            modifier = Modifier.fillMaxSize(),
-            horizontalGravity = Alignment.CenterHorizontally
-        ) {
-            StateHeaderCard(
-                icon = state.icon,
-                photoCount = photos.size
-            )
-            for (photo in photos) {
-                CardView {
-                    val coilImageId = "coilImage"
-                    ConstraintLayout(
-                        modifier = Modifier.fillMaxWidth()
-                            .wrapContentHeight(),
-                        constraintSet = ConstraintSet {
-                            val coilImage = createRefFor(coilImageId)
+        LazyColumnFor(items = itemsList) { item ->
+            when (item) {
+                is Photo -> PhotoCardView(item)
+                is StateHeaderInfo -> StateHeaderCard(
+                    icon = item.icon,
+                    photoCount = item.photoCount
+                )
+            }
 
-                            constrain(coilImage) {
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                                top.linkTo(parent.top)
-                                bottom.linkTo(parent.bottom)
-                            }
-                        }
-                    ) {
-                        CoilImageWithCrossfade(
-                            data = photo.url_m!!,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .preferredHeight(240.dp)
-                                .layoutId(coilImageId)
-                        )
-                    }
+        }
+    }
+}
+
+@Composable
+fun PhotoCardView(photo: Photo) {
+    CardView {
+        val coilImageId = "coilImage"
+        ConstraintLayout(
+            modifier = Modifier.fillMaxWidth()
+                .wrapContentHeight(),
+            constraintSet = ConstraintSet {
+                val coilImage = createRefFor(coilImageId)
+
+                constrain(coilImage) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
                 }
             }
+        ) {
+            CoilImageWithCrossfade(
+                data = photo.url_m!!,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .preferredHeight(240.dp)
+                    .layoutId(coilImageId)
+            )
         }
     }
 }

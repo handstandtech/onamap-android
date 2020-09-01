@@ -41,7 +41,6 @@ class UsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-
             MyApplicationTheme {
 
                 Providers(
@@ -52,8 +51,6 @@ class UsActivity : AppCompatActivity() {
                 }
             }
         }
-
-
     }
 }
 
