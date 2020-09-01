@@ -4,7 +4,6 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.ConstraintSet
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
@@ -23,6 +21,8 @@ import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -30,7 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawShadow
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.imageResource
@@ -60,31 +60,35 @@ fun UsState(
         addAll(photos)
     }.toList()
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
-            title = {
-                Text(text = state.fullName)
-            },
-            backgroundColor = Color.White,
-            navigationIcon = {
-                IconButton(onClick = {
-                    onUpClicked()
-                }) {
-                    Icon(Icons.Filled.ArrowBack)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = state.fullName)
+                },
+//                backgroundColor = Color.White,
+                navigationIcon = {
+                    IconButton(onClick = {
+                        onUpClicked()
+                    }) {
+                        Icon(Icons.Filled.ArrowBack)
+                    }
                 }
-            }
-        )
-        LazyColumnFor(items = itemsList) { item ->
-            when (item) {
-                is Photo -> PhotoCardView(item)
-                is StateHeaderInfo -> StateHeaderCard(
-                    icon = item.icon,
-                    photoCount = item.photoCount
-                )
-            }
+            )
+        },
+        bodyContent = {
+            LazyColumnFor(items = itemsList) { item ->
+                when (item) {
+                    is Photo -> PhotoCardView(item)
+                    is StateHeaderInfo -> StateHeaderCard(
+                        icon = item.icon,
+                        photoCount = item.photoCount
+                    )
+                }
 
+            }
         }
-    }
+    )
 }
 
 @Composable
@@ -183,21 +187,28 @@ fun StateHeaderCard(@DrawableRes icon: Int, photoCount: Int) {
 
 @Composable
 fun StateImage(@DrawableRes icon: Int, modifier: Modifier = Modifier, sizeDp: Dp) {
+    val shape = RoundedCornerShape(4.dp)
+    val stateSurroundingColor = MaterialTheme.colors. background
     Box(
-        backgroundColor = Color.White,
+        backgroundColor = stateSurroundingColor,
         modifier = modifier
+            .padding(4.dp)
             .wrapContentSize(),
-        padding = 4.dp
+        shape = shape
     ) {
         Box(
-            backgroundColor = stateBackground,
-            modifier = Modifier.wrapContentSize()
+            shape = shape,
+            backgroundColor = stateBackgroundColor,
+            modifier = Modifier
+                .padding(4.dp)
+                .wrapContentSize()
         ) {
             Box(
                 modifier = Modifier.wrapContentSize()
             ) {
                 Image(
                     asset = imageResource(id = icon),
+                    colorFilter = ColorFilter.tint(stateSurroundingColor),
                     modifier = Modifier
                         .size(sizeDp)
                 )

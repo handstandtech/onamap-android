@@ -20,16 +20,17 @@ interface Root {
         @Composable
         fun Content(defaultRouting: Routing) {
             Router(defaultRouting) { backStack ->
+                val stateListComposable =  StatesList(
+                    onStateClicked = { state ->
+                        backStack.push(
+                            Routing.State(state)
+                        )
+                    },
+                    states = States.states
+                )
                 when (val currentRouting = backStack.last()) {
                     is Routing.UsMap -> {
-                        StatesList(
-                            onStateClicked = { state ->
-                                backStack.push(
-                                    Routing.State(state)
-                                )
-                            },
-                            states = States.states
-                        )
+                        stateListComposable
                     }
                     is Routing.State -> {
                         val state = currentRouting.state
