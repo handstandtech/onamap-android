@@ -55,7 +55,7 @@ fun StateListScreen(
                         gravity = Alignment.CenterStart
                     ) {
                         Row(
-                            verticalGravity = Alignment.CenterVertically,
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             StateImage(
                                 icon = state.drawableResThumb,

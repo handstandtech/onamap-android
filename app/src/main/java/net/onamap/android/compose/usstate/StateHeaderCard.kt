@@ -62,7 +62,7 @@ object StateHeaderCard {
                         sizeDp = 100.dp
                     )
                     Column(
-                        horizontalGravity = Alignment.CenterHorizontally,
+                        horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
                             .wrapContentSize()
                             .layoutId(countTextConstraint)
