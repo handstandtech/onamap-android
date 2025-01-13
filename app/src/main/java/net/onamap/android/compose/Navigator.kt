@@ -2,7 +2,7 @@ package net.onamap.android.compose
 
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
-import androidx.compose.runtime.savedinstancestate.listSaver
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.toMutableStateList
 import java.io.Serializable
 

@@ -1,0 +1,13 @@
+[versions]
+gradle = "8.8.0"
+kotlin = "2.0.21"
+uiToolingPreviewAndroid = "1.7.6"
+[libraries]
+androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+
+[plugins]
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+

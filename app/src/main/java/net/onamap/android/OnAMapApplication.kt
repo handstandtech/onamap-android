@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.onamap.android.dao.PhotoDao
+import timber.log.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
