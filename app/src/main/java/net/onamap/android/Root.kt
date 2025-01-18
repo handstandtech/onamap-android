@@ -4,9 +4,7 @@ package net.onamap.android
 import androidx.compose.runtime.Composable
 //import com.github.zsoltk.compose.router.Router
 import net.onamap.android.compose.statelist.StateListScreen
-import net.onamap.android.compose.usstate.UsStateScreen.UsStateScreen
-import net.onamap.android.dao.PhotoDao
-import net.onamap.android.model.StateData
+import net.onamap.models.models.StateData
 import net.onamap.android.model.States
 
 interface Root {

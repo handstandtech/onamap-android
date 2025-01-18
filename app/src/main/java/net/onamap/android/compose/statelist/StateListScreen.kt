@@ -15,8 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import net.onamap.android.compose.StateImage
-import net.onamap.android.model.StateData
+import net.onamap.models.models.StateData
 import net.onamap.android.model.States
 
 @Composable

@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import net.onamap.android.compose.usstate.StateHeaderCard.StateHeaderCard
 import net.onamap.android.dao.Photo
-import net.onamap.android.model.StateData
+import net.onamap.models.models.StateData
 
 data class StateHeaderInfo(@DrawableRes val icon: Int, val photoCount: Int)
 

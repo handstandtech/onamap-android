@@ -1,13 +1,14 @@
-package net.onamap.android.model
+package net.onamap.models.models
 
-import java.io.Serializable
+import kotlinx.serialization.Serializable
 
-class StateData(
+@Serializable
+data class StateData(
     val abbv: String,
     val fullName: String,
     val drawableResThumb: Int,
     val icon: Int
-) : Serializable {
+) {
     var selected = false
     fun toggle() {
         selected = !selected

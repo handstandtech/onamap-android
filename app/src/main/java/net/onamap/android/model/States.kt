@@ -1,7 +1,8 @@
 package net.onamap.android.model
 
 import net.onamap.android.R
-import java.util.*
+import net.onamap.models.models.StateData
+import java.util.Collections.sort
 
 object States {
     private val s: MutableMap<String, StateData> =
@@ -18,7 +19,7 @@ object States {
     val states: List<StateData>
         get() {
             val list: List<StateData> = ArrayList(s.values)
-            Collections.sort(list) { lhs, rhs -> lhs.fullName.compareTo(rhs.fullName) }
+            sort(list) { lhs, rhs -> lhs.fullName.compareTo(rhs.fullName) }
             return list
         }
 

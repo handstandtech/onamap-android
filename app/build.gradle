@@ -50,6 +50,8 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.5.1'
     implementation "io.coil-kt:coil:1.0.0"
 
+    implementation project(":models")
+
     implementation 'androidx.appcompat:appcompat:1.7.0'
 
     // Compose
