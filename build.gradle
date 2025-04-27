@@ -9,6 +9,7 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
     }
     dependencies {
         classpath libs.android.gradle
@@ -22,7 +23,7 @@ plugins{
     alias(libs.plugins.org.jetbrains.kotlin.android) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.serialization) apply false
-//    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.vanniktech.maven.publish) apply false
 }
 
@@ -31,5 +32,6 @@ allprojects {
         mavenCentral()
         google()
         maven { url 'https://jitpack.io' }
+        maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
     }
 }

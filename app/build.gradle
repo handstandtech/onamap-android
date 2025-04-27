@@ -27,21 +27,20 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-//    kotlinOptions {
-//        jvmTarget = '1.8'
-//    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 
     buildFeatures {
         compose true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion "${compose_version}"
-        kotlinCompilerVersion "${kotlin_version}"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
 }
 
@@ -51,6 +50,7 @@ dependencies {
     implementation "io.coil-kt:coil:1.0.0"
 
     implementation project(":models")
+    implementation project(":ui")
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
 
