@@ -1,6 +1,4 @@
-package net.onamap.android.dao
-
-import java.util.*
+package net.onamap.models.models
 
 open class Place {
     var name: String? = null

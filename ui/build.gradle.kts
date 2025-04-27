@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "net.onamap.ui"
+    namespace = "net.onamap.android"
     compileSdk = 34
     
     defaultConfig {
@@ -26,7 +26,13 @@ android {
     }
     
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "2.0.0"
+    }
+
+    tasks.configureEach { 
+        if (name.toLowerCase().contains("release")) {
+            enabled = false
+        }
     }
 }
 
@@ -38,6 +44,6 @@ dependencies {
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation(project(":models"))
-    implementation(libs.androidx.ui.tooling.preview.android)
 } 

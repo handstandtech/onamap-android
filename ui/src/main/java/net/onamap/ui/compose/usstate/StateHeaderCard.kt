@@ -8,8 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,12 +48,12 @@ object StateHeaderCard {
                 ) {
                     Text(
                         text = "$photoCount",
-                        style = MaterialTheme.typography.h2,
+                        style = MaterialTheme.typography.titleMedium,
                         textAlign = TextAlign.Center
                     )
                     Text(
                         text = if (photoCount == 1) "Photo" else "Photos",
-                        style = MaterialTheme.typography.h5,
+                        style = MaterialTheme.typography.titleSmall,
                         textAlign = TextAlign.Center,
                     )
                 }

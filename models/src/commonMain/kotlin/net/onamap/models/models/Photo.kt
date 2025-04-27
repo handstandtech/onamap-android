@@ -1,4 +1,4 @@
-package net.onamap.android.dao
+package net.onamap.models.models
 
 data class Photo(
     var id: String? = null,

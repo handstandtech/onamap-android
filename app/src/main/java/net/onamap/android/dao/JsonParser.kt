@@ -5,7 +5,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import net.onamap.android.util.AssetUtils
-import org.json.JSONException
+import net.onamap.models.models.City
+import net.onamap.models.models.Country
+import net.onamap.models.models.Photo
+import net.onamap.models.models.Region
 import org.json.JSONObject
 import timber.log.Timber
 import java.util.*
@@ -150,10 +153,10 @@ object JsonParser {
         val photos: MutableList<Photo> = mutableListOf()
         photoMap.keys().forEach { id ->
             val photo = gson.fromJson(
-                photoMap.getJSONObject(id).toString(),
+                photoMap.getJSONObject(id.toString()).toString(),
                 Photo::class.java
             )
-            photo.id = id
+            photo.id = id.toString()
             photos.add(photo)
         }
         return photos

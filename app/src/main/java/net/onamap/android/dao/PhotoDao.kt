@@ -1,7 +1,7 @@
 package net.onamap.android.dao
 
 import android.content.Context
-import java.util.*
+import net.onamap.models.models.Photo
 
 class PhotoDao {
 
