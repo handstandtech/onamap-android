@@ -1,6 +1,8 @@
 package net.onamap.android.compose.usstate
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
@@ -21,11 +24,19 @@ import net.onamap.ui.compose.StateImage
 
 object StateHeaderCard {
     @Composable
-    fun StateHeaderCard(@DrawableRes icon: Int, photoCount: Int) {
+    fun StateHeaderCard(
+        @DrawableRes icon: Int,
+        photoCount: Int,
+        onClick: () -> Unit = {}
+    ) {
         CardView {
+
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
+                    .clickable {
+                        onClick()
+                    }
                     .fillMaxWidth()
                     .wrapContentHeight(),
             ) {
@@ -57,8 +68,6 @@ object StateHeaderCard {
                         textAlign = TextAlign.Center,
                     )
                 }
-
-
             }
         }
     }

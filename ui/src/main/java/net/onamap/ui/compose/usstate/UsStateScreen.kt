@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,6 +30,7 @@ object UsStateScreen {
         state: StateData,
         photos: List<Photo>
     ) {
+        println("Photos $photos")
         val itemsList = mutableListOf<Any>(
             StateHeaderInfo(
                 icon = state.icon,
@@ -56,14 +58,16 @@ object UsStateScreen {
             },
             content = { paddingValues ->
                 Box(modifier = Modifier.padding(paddingValues)) {
-                    Row {
-                        itemsList.forEach { item ->
-                            when (item) {
-                                is Photo -> PhotoCardView(item)
-                                is StateHeaderInfo -> StateHeaderCard(
-                                    icon = item.icon,
-                                    photoCount = item.photoCount
-                                )
+                    LazyColumn {
+                        itemsList.forEach { listItem ->
+                            item {
+                                when (listItem) {
+                                    is Photo -> PhotoCardView(listItem)
+                                    is StateHeaderInfo -> StateHeaderCard(
+                                        icon = listItem.icon,
+                                        photoCount = listItem.photoCount
+                                    )
+                                }
                             }
                         }
                     }

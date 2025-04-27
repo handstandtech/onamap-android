@@ -46,4 +46,7 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation(project(":models"))
+    
+    // Coil for image loading
+    implementation("io.coil-kt:coil-compose:2.5.0")
 } 
