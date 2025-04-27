@@ -1,7 +1,7 @@
 package net.onamap.android.compose.usstate
 
 import androidx.compose.runtime.Composable
-import net.onamap.android.compose.CardView
+import net.onamap.ui.compose.CardView
 import net.onamap.models.models.Photo
 
 import androidx.compose.material3.*

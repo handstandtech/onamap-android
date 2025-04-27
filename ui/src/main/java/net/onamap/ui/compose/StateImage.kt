@@ -1,18 +1,22 @@
-package net.onamap.android.compose
+package net.onamap.ui.compose
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-
+import net.onamap.android.compose.stateBackgroundColor
 
 @Composable
 fun StateImage(@DrawableRes icon: Int, modifier: Modifier = Modifier, sizeDp: Dp) {
@@ -33,17 +37,11 @@ fun StateImage(@DrawableRes icon: Int, modifier: Modifier = Modifier, sizeDp: Dp
             Box(
                 modifier = Modifier.wrapContentSize()
             ) {
-                Text("Icon then Image goes here")
-//                Icon(
-//                    Resources.getSystem().getDrawable(icon)), null, modifier = Modifier
-//                        .size(sizeDp)
-//                )
-//                Image(
-//                    asset = imageResource(id = icon),
-//                    colorFilter = ColorFilter.tint(stateSurroundingColor),
-//                    modifier = Modifier
-//                        .size(sizeDp)
-//                )
+                Icon(
+                    painter = painterResource(id = icon),
+                    contentDescription = null,
+                    modifier = Modifier.size(sizeDp)
+                )
             }
         }
     }

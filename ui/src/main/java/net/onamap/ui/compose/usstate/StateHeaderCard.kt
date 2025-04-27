@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import net.onamap.android.compose.CardView
-import net.onamap.android.compose.StateImage
+import net.onamap.ui.compose.CardView
+import net.onamap.ui.compose.StateImage
 
 
 object StateHeaderCard {

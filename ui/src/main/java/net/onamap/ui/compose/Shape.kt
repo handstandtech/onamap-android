@@ -1,4 +1,4 @@
-package net.onamap.android.compose
+package net.onamap.ui.compose
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

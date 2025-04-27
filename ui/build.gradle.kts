@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "net.onamap.android"
+    namespace = "net.onamap.ui"
     compileSdk = 34
     
     defaultConfig {

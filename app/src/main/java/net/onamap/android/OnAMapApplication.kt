@@ -1,9 +1,6 @@
 package net.onamap.android
 
 import android.app.Application
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import net.onamap.android.dao.PhotoDao
 import timber.log.BuildConfig
 import timber.log.Timber
@@ -13,12 +10,10 @@ class OnAMapApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        PhotoDao.init(applicationContext = applicationContext)
         if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())
         }
 
-        CoroutineScope(Dispatchers.Default).launch {
-            PhotoDao.init(applicationContext = applicationContext)
-        }
     }
 }

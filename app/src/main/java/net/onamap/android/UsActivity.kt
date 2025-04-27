@@ -19,7 +19,7 @@ class UsActivity : ComponentActivity() {
 
         setContentView(ComposeView(this).apply {
             setContent {
-                Root.Content(Root.Routing.UsMap)
+                Root.Content()
             }
         })
 

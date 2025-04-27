@@ -1,4 +1,4 @@
-package net.onamap.android.compose
+package net.onamap.ui.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import net.onamap.android.R
 import net.onamap.android.compose.usstate.StateHeaderCard.StateHeaderCard
 import net.onamap.models.models.Photo
 
@@ -56,14 +55,14 @@ private val mockPhotos = listOf(
     )
 )
 
-@Preview
-@Composable
-private fun AlaskaStateHeaderCardPreview() {
-    StateHeaderCard(icon = R.drawable.ak, photoCount = 1)
-}
-
-@Preview
-@Composable
-private fun CaliforniaStateHeaderCardPreview() {
-    StateHeaderCard(icon = R.drawable.ca, photoCount = 90)
-}
+//@Preview
+//@Composable
+//private fun AlaskaStateHeaderCardPreview() {
+//    StateHeaderCard(icon = R.drawable.ak, photoCount = 1)
+//}
+//
+//@Preview
+//@Composable
+//private fun CaliforniaStateHeaderCardPreview() {
+//    StateHeaderCard(icon = R.drawable.ca, photoCount = 90)
+//}

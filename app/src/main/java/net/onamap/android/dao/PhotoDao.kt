@@ -11,6 +11,7 @@ class PhotoDao {
 
         fun init(applicationContext: Context) {
             handstandSamPhotos = JsonParser.parse(applicationContext, "handstandsam")!!
+            println(handstandSamPhotos)
         }
 
         fun getPhotosForState(stateName: String): List<Photo> {
