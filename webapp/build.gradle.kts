@@ -1,6 +1,6 @@
 val kotlin_version="2.1.20"
 val logback_version="1.4.14"
-val bootstrap_version="5.3.3"
+val ktor_version="3.1.2"
 
 plugins {
     kotlin("jvm")
@@ -26,6 +26,4 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("io.ktor:ktor-server-thymeleaf-jvm")
-//    implementation("io.ktor:ktor-server-webjars:$ktor_version")
-    implementation("org.webjars:bootstrap:$bootstrap_version")
 }
