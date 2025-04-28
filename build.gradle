@@ -7,31 +7,20 @@ buildscript {
         kotlin_version = "2.0.21"
     }
     repositories {
-        mavenCentral()
         google()
-        maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
+        mavenCentral()
     }
     dependencies {
-        classpath libs.android.gradle
+        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
-plugins{
-    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
-    alias(libs.plugins.kotlin.multiplatform) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.jetbrains.compose) apply false
-    alias(libs.plugins.vanniktech.maven.publish) apply false
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        maven { url 'https://jitpack.io' }
-        maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
-    }
+plugins {
+    id 'com.android.application' version '8.2.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+    id 'com.vanniktech.maven.publish' version '0.25.3' apply false
 }

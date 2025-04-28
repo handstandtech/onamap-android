@@ -4,10 +4,12 @@ pluginManagement {
         google()
         mavenCentral()
         maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
+        maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
     }
 }
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -15,4 +17,8 @@ dependencyResolutionManagement {
     }
 }
 
-include ':app', ':models', ':ui', ':flickr'
+rootProject.name = "onamap-android"
+include ':app',
+ ':models',
+  ':ui', ':flickr', ':googlemaps',
+':webapp'
