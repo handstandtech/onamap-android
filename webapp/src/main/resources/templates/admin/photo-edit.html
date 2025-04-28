@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/base :: head"></head>
+<body>
+    <div th:replace="admin/base :: nav"></div>
+    
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" th:text="${photo.id == '' ? 'Create New Photo' : 'Edit Photo'}"></h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500" th:text="${photo.id == '' ? 'Add a new photo below.' : 'Update photo details below.'}"></p>
+        </div>
+        
+        <div class="border-t border-gray-200 px-4 py-5 sm:p-6">
+            <form th:action="${photo.id == '' ? '/admin/photos/new' : '/admin/photos/' + photo.id}" method="post" class="space-y-6">
+                <div>
+                    <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                    <input type="text" name="title" id="title" th:value="${photo.title}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea name="description" id="description" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" th:text="${photo.description}" required></textarea>
+                </div>
+                
+                <div>
+                    <label for="imageUrl" class="block text-sm font-medium text-gray-700">Image URL</label>
+                    <input type="text" name="imageUrl" id="imageUrl" th:value="${photo.imageUrl}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                
+                <div class="flex items-center">
+                    <input type="checkbox" name="isPublished" id="isPublished" th:checked="${photo.isPublished}" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="isPublished" class="ml-2 block text-sm text-gray-900">Published</label>
+                </div>
+                
+                <div class="flex justify-end">
+                    <a href="/admin" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-3">Cancel</a>
+                    <button type="submit" class="bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" th:text="${photo.id == '' ? 'Create' : 'Save'}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

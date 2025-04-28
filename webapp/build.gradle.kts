@@ -1,8 +1,7 @@
 plugins {
     kotlin("jvm")
     id("io.ktor.plugin") version "3.1.2"
-    // kotlin("serialization")
-    libs.plugins.kotlin.serialization
+    alias(libs.plugins.kotlin.serialization)
 }
 
 application {
@@ -20,4 +19,7 @@ dependencies {
     implementation(libs.ktor.server.content.negotiation.jvm)
     implementation(libs.ktor.serialization.kotlinx.json.jvm)
     implementation(libs.ktor.server.thymeleaf.jvm)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(project(":models"))
+    implementation(libs.gson)
 }
