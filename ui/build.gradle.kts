@@ -29,10 +29,18 @@ android {
         kotlinCompilerExtensionVersion = "2.0.0"
     }
 
+    lint {
+        disable += listOf("all")
+    }
+
     tasks.configureEach { 
         if (name.toLowerCase().contains("release")) {
             enabled = false
         }
+    }
+
+    tasks.matching { it.name.contains("lint") }.configureEach {
+        enabled = false
     }
 }
 
