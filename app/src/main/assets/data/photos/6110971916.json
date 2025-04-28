@@ -1,0 +1,35 @@
+{
+  "id": "6110971916",
+  "filename": "6110971916.jpg",
+  "location": {
+    "country": "Greece",
+    "region": null,
+    "city": null,
+    "coordinates": {
+      "latitude": null,
+      "longitude": null
+    }
+  },
+  "timestamp": {
+    "taken": null,
+    "uploaded": null
+  },
+  "camera": {
+    "make": null,
+    "model": null,
+    "settings": {
+      "aperture": null,
+      "shutter_speed": null,
+      "iso": null,
+      "focal_length": null
+    }
+  },
+  "tags": [],
+  "description": null,
+  "related_photos": [
+    "6110972294",
+    "6244950805",
+    "6241796877"
+  ],
+  "metadata_version": "1.0"
+} 
